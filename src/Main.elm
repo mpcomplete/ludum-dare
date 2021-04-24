@@ -64,13 +64,13 @@ eastedge  (w,h) i = modBy w i == 0
 
 -- cardinal directions to index offsets
 north (w,h) = w
-northwest (w,h) = w + 1
-west (w,h) = 1
+northwest (w,h) = w - 1
+west (w,h) = -1
 southwest (w,h) = -w + 1
 south (w,h) = -w
 southeast (w,h) = -w - 1
-east (e,h) = -1
-northeast (w,h) = w - 1
+east (e,h) = 1
+northeast (w,h) = w + 1
 
 -- sugar for monadic if-then-else checks
 unless b v = if b then v else Nothing
@@ -98,7 +98,7 @@ updateCell cell = case cell of
   _                           -> cell
 
 -- utility for converting 2d coordinates to normalized floating point offsets
-indexToOffset (w,_) index = (index // w |> toFloat, modBy w index |> toFloat)
+indexToOffset (w,_) index = (modBy w index |> toFloat, index // w |> toFloat)
 
 -- utility for basic math on tuples... jesus christ
 scale s (x,y) = (s * x, s * y)
