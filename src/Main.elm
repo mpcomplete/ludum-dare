@@ -145,14 +145,14 @@ gravity dt player =
         vy_ =
             vy - 9.81 * dt
 
-        ( newP, newV ) =
+        ( position, velocity ) =
             if collides player.position then
                 ( ( x + vx * dt, y + 0.1 ), ( vx, -vy_ * 0.6 ) )
 
             else
                 ( ( x + vx * dt, y + vy_ * dt ), ( vx, vy_ ) )
     in
-    { player | position = newP, velocity = newV }
+    { player | position = position, velocity = velocity }
 
 
 collides position =
