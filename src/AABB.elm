@@ -1,10 +1,6 @@
 module AABB exposing (AABB, intersects)
 
--- import Math.Vector2 exposing (Vec2)
-
-type alias Vec2 = (Float, Float)
-getX v = Tuple.first v
-getY v = Tuple.second v
+import Vec2 exposing (Vec2)
 
 type alias AABB = { position: Vec2, size: Vec2 }
 
@@ -13,10 +9,10 @@ type alias AABB = { position: Vec2, size: Vec2 }
 
 intersects : AABB -> AABB -> Bool
 intersects box1 box2 =
-    let (l1, t1) = box1.position
-        (w1, h1) = box1.size
-        (l2, t2) = box2.position
-        (w2, h2) = box2.size
+    let (l1, t1) = Vec2.toTuple box1.position
+        (w1, h1) = Vec2.toTuple box1.size
+        (l2, t2) = Vec2.toTuple box2.position
+        (w2, h2) = Vec2.toTuple box2.size
         r1 = l1 + w1
         b1 = t1 - h1
         r2 = l2 + w2
